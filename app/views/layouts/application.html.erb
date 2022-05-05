@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bookers</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/4b6668ffc2.js" crossorigin="anonymous"></script>
+  </head>
+
+  <body>
+    <header>
+      <% if user_signed_in? %>
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark px-5">
+          <a href="#" class="navbar-brand pl-5 ">Bookers</a>
+          <div class="collapse navbar-collapse justify-content-end" id="nav-menu">
+            <div class="navbar-nav">
+              <a class="nav-item nav-link active" href="/"><i class="fa-solid fa-house pr-1"></i>Home</a>
+              <a class="nav-item nav-link active" href=""><i class="fa-solid fa-users pr-1"></i>Users</a>
+              <a class="nav-item nav-link active" href="/books"><i class="fa-solid fa-book-open pr-1"></i>Books</a>
+              <span class="nav-link-posi">
+                <%= link_to destroy_user_session_path, method: :delete do %>
+                  <i class="fa-solid fa-right-from-bracket pr-1"></i> Log out
+                <% end %>
+              </span>
+            </div>
+          </div>
+        </nav>
+      <% else %>
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark px-5">
+          <a href="#" class="navbar-brand pl-5 ">Bookers</a>
+          <div class="collapse navbar-collapse justify-content-end" id="nav-menu">
+            <div class="navbar-nav">
+              <a class="nav-item nav-link active" href="/"><i class="fa-solid fa-house pr-1"></i>Home</a>
+              <a class="link nav-item nav-link active" href="/home/about"><i class="fa-solid fa-link pr-1"></i>About</a>
+              <span class="nav-link-posi">
+                <%= link_to new_user_registration_path do %>
+                <i class="fa-solid fa-user-plus pr-1"></i> Sign up
+                <% end %>
+              </span>
+              <span class="nav-link-posi">
+                <%= link_to new_user_session_path do %>
+                <i class="fa-solid fa-right-to-bracket pr-1"></i> Log in
+                <% end %>
+              </span>
+            </div>
+          </div>
+        </nav>
+      <% end %>
+    </header>
+    <%= yield %>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3">
+      <h2>User info</h2>
+      <% if @user.image.attached? %>
+        <%= image_tag @user.image, size: "100x100" %>
+      <% else %>
+        <%= image_tag 'default-image.jpg', size: "100x100" %>
+      <% end %>
+      <div class="info">
+        <div class="info-user">
+          <p class="info-border font-big">name</p>
+          <p class="info-border font-big">introduction</p>
+        </div>
+        <div class="info-user">
+          <p class="info-border font-big text-center"><%= @user.name %></p>
+          <p class="info-border font-big text-center"><%= @user.introduction %></p>
+        </div>
+      </div>
+
+      <%= link_to edit_user_registration_path, class: 'btn btn-light btn-outline-dark btn-block' do %>
+        <i class="fa-solid fa-user-gear"></i>
+      <% end %>
+    </div>
+    <div class="col-lg-1"></div>
+    <div class="col-lg-7"></div>
+    <div class="col-lg-1"></div>
+  </div>
+</div>
