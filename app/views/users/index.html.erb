@@ -1,0 +1,82 @@
+ <% if @current_user.errors.any? %>
+  <%= @current_user.errors.count %> error occurred.
+  <ul>
+    <% @current_user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <h2>User info</h2>
+      <% if @current_user.profile_image.attached? %>
+        <%= image_tag @current_user.profile_image, size: "100x100" %>
+      <% else %>
+        <%= image_tag 'default-image.jpg', size: "100x100" %>
+      <% end %>
+      <div class="d-flex">
+        <div>
+          <p class="border-bottom border-top py-2 font-weight-bold">name</p>
+          <p class="py-2 font-weight-bold">introduction</p>
+        </div>
+        <div class="w-100">
+          <p class="text-right border-bottom border-top py-2 pr-4 font-weight-bold"><%= @current_user.name %></p>
+          <p class="text-right py-2 pr-4 text-right font-weight-bold"><%= @current_user.introduction %></p>
+        </div>
+      </div>
+
+      <%= link_to "/users/#{@current_user.id}/edit", class: 'btn btn-light btn-outline-dark btn-block' do %>
+        <i class="fas fa-user-cog"></i>
+      <% end %>
+
+      <h2>New book</h2>
+      <%= form_with model: @book do |f| %>
+        <p>Title</p>
+        <%= f.text_field :title, class: 'w-100' %>
+
+        <p>Opinion</p>
+        <%= f.text_area :body, class: 'w-100' %>
+
+        <%= f.submit 'Create Book', class: 'btn btn-success btn-sm' %>
+
+      <% end %>
+    </div>
+    <div class="col-md-8 offset-md-1">
+      <h2>Users</h2>
+      <table>
+        <thead class="w-100 border-top border-bottom ">
+          <tr>
+            <th class="py-2 pl-2 pr-5 col-2">image</th>
+            <th class="py-2 px-5 col-4">name</th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody class="col-8">
+          <% @users.each do |user| %>
+            <tr class="border-bottom">
+              <td class="col-2 py-2 pl-2 pr-5">
+                <% if user.profile_image.attached? %>
+                  <%= link_to image_tag(user.profile_image, size: "80x80"), "/users/#{user.id}" %>
+                <% else %>
+                  <%= link_to image_tag("default-image.jpg", size: "80x80"), "/users/#{user.id}" %>
+                <% end %>
+              </td>
+              <td class="col-4 py-2 px-5"><%= user.name %>
+              </td>
+              <td class="col-2 py-2 px-5"><%= link_to "Show", "/users/#{user.id}" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<p class="text-center"><br>
+    <br>
+    CopyRight Infratop.inc
+</p>

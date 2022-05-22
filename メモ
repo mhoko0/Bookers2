@@ -1,6 +1,5 @@
-ログインページnew.html.erbのEメールを外したが、ログインができない。
-    →　Eメールを入力する必要がある設定の為か。
-        質問する必要あり。
+bundle exec rspec spec/ --format documentation
 
-前回
-borderのCSSが反映されないので質問する。
+グリッドシステム
+
+アイコン

@@ -20,14 +20,21 @@
           <a href="#" class="navbar-brand pl-5 ">Bookers</a>
           <div class="collapse navbar-collapse justify-content-end" id="nav-menu">
             <div class="navbar-nav">
-              <a class="nav-item nav-link active" href="/"><i class="fa-solid fa-house pr-1"></i>Home</a>
-              <a class="nav-item nav-link active" href=""><i class="fa-solid fa-users pr-1"></i>Users</a>
-              <a class="nav-item nav-link active" href="/books"><i class="fa-solid fa-book-open pr-1"></i>Books</a>
-              <span class="nav-link-posi">
-                <%= link_to destroy_user_session_path, method: :delete do %>
-                  <i class="fa-solid fa-right-from-bracket pr-1"></i> Log out
-                <% end %>
-              </span>
+              <%= link_to user_path(current_user), class: "nav-item nav-link active" do %>
+                <i class="fas fa-home pr-1"></i>Home
+              <% end %>
+
+              <%= link_to users_path, class: "nav-item nav-link active" do %>
+                <i class="fas fa-users pr-1"></i>Users
+              <% end %>
+
+              <%= link_to books_path, class: "nav-item nav-link active" do %>
+                <i class="fas fa-book-open pr-1"></i>Books
+              <% end %>
+
+              <%= link_to destroy_user_session_path, method: :delete, class: "nav-item nav-link active" do %>
+                <i class="fas fa-sign-out-alt pr-1"></i> Log out
+              <% end %>
             </div>
           </div>
         </nav>
@@ -36,21 +43,27 @@
           <a href="#" class="navbar-brand pl-5 ">Bookers</a>
           <div class="collapse navbar-collapse justify-content-end" id="nav-menu">
             <div class="navbar-nav">
-              <a class="nav-item nav-link active" href="/"><i class="fa-solid fa-house pr-1"></i>Home</a>
-              <a class="link nav-item nav-link active" href="/home/about"><i class="fa-solid fa-link pr-1"></i>About</a>
-              <span class="nav-link-posi">
-                <%= link_to new_user_registration_path do %>
-                <i class="fa-solid fa-user-plus pr-1"></i> Sign up
-                <% end %>
-              </span>
-              <span class="nav-link-posi">
-                <%= link_to new_user_session_path do %>
-                <i class="fa-solid fa-right-to-bracket pr-1"></i> Log in
-                <% end %>
-              </span>
+              <%= link_to root_path, class: "nav-item nav-link active" do %>
+                <i class="fas fa-home pr-1"></i>Home
+              <% end %>
+
+              <%= link_to about_path, class: "nav-item nav-link active" do %>
+                <i class="fas fa-link pr-1"></i>About
+              <% end %>
+
+              <%= link_to new_user_registration_path, class: "nav-item nav-link active" do %>
+                <i class="fas fa-user-plus pr-1"></i> Sign up
+              <% end %>
+
+              <%= link_to user_session_path, class: "nav-item nav-link active" do %>
+                <i class="fas fa-sign-in-alt pr-1"></i> Log in
+              <% end %>
             </div>
           </div>
         </nav>
+      <% end %>
+      <% flash.each do |key, value| %>
+        <%= content_tag(:div, value, class: "#{key}") %>
       <% end %>
     </header>
     <%= yield %>

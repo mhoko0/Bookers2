@@ -1,0 +1,32 @@
+ <% if @book.errors.any? %>
+  <%= @book.errors.count %> error occurred.
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+  <h2 class="pt-2">Editing Book</h2>
+  <%= form_with model: @book do |f| %>
+    <p>Title</p>
+    <%= f.text_field :title, class: 'px-2 py-1 btn-block'%>
+    <br>
+    <br>
+    <p>Opinion</p>
+    <%= f.text_area :body, class: 'px-2 py-1 btn-block' %>
+    <br>
+    <br>
+    <%= f.submit 'Update Book', class: 'btn btn-success btn-sm' %>
+  <% end %>
+  <br>
+
+  <%= link_to "Show", book_path(@book.id) %>
+  <span> | </span>
+  <%= link_to "Back", '/books' %>
+</div>
+
+<p class="text-center"><br>
+  <br>
+  CopyRight Infratop.inc</p>
